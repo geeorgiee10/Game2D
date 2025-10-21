@@ -1,0 +1,87 @@
+using UnityEngine;
+using TMPro;
+
+public class Datos2 : MonoBehaviour
+{
+    
+    [Header("UI")] public Canvas canvas;
+    public TextMeshProUGUI puntosText;
+    public TextMeshProUGUI puntosDinamicos;
+
+
+
+    public static Datos2 Instance;
+    public  int puntos;
+
+
+    private void Awake(){
+        if(Instance == null){
+            Instance = this;
+        }
+        else{
+            Destroy(gameObject);
+        }
+            
+    }
+
+    private void ActualizarDatos(){
+        if(puntosText){
+            puntosText.text = "Puntos: " + puntos.ToString();
+        }
+    }
+
+    public void AddPoints(int points){
+        puntos += points;
+        ActualizarDatos();
+    }
+    
+    
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        if(puntosDinamicos){
+            puntosDinamicos.gameObject.SetActive(false);
+        }
+        ActualizarDatos();
+    }
+
+    public void MostrarPuntosDinamicos(int puntos, Vector3 posicionMundoPowerUp)
+    {
+        if(!puntosDinamicos){
+            return;
+        }
+        puntosDinamicos.text = "+" + puntos;
+
+        //Convertir mundo -> Pantalla
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(posicionMundoPowerUp + Vector3.up * 1.2f);
+        // Si el objeto está detras de la cámara, no lo mostramos
+        if(screenPos.z < 0f){
+            puntosDinamicos.gameObject.SetActive(false);
+        }
+
+        RectTransform rt = puntosDinamicos.rectTransform;
+        if(canvas.renderMode == RenderMode.ScreenSpaceOverlay){
+            rt.position = screenPos;
+        }
+        else{
+            RectTransform canvasRT = canvas.transform as RectTransform;
+            Vector2 localPoint;
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                canvasRT, 
+                screenPos, 
+                canvas.worldCamera, 
+                out localPoint
+            );
+            rt.anchoredPosition = localPoint;
+        }
+        puntosDinamicos.gameObject.SetActive(true);
+
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+}
