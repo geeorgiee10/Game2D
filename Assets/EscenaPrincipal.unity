@@ -15892,6 +15892,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 128960322}
     m_Modifications:
+    - target: {fileID: 2995320428769512008, guid: f60afbd59d1bae349bfc0736bbc36b9b, type: 3}
+      propertyPath: m_Pitch
+      value: 0.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 2995320428769512008, guid: f60afbd59d1bae349bfc0736bbc36b9b, type: 3}
+      propertyPath: m_Volume
+      value: 0.406
+      objectReference: {fileID: 0}
     - target: {fileID: 4308194645172300227, guid: f60afbd59d1bae349bfc0736bbc36b9b, type: 3}
       propertyPath: puntosPowerUp
       value: 1
@@ -16840,7 +16848,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 44100ff2787149346a72073a58571b5c, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.437
+  m_Volume: 0.262
   m_Pitch: 1
   Loop: 1
   Mute: 1
