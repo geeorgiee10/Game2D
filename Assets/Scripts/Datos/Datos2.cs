@@ -1,5 +1,7 @@
 using UnityEngine;
 using TMPro;
+using System.Collections;
+
 
 public class Datos2 : MonoBehaviour
 {
@@ -53,7 +55,7 @@ public class Datos2 : MonoBehaviour
         puntosDinamicos.text = "+" + puntos;
 
         //Convertir mundo -> Pantalla
-        Vector3 screenPos = Camera.main.WorldToScreenPoint(posicionMundoPowerUp + Vector3.up * 1.2f);
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(posicionMundoPowerUp + Vector3.up * 0.5f + Vector3.right * 1.5f);
         // Si el objeto está detras de la cámara, no lo mostramos
         if(screenPos.z < 0f){
             puntosDinamicos.gameObject.SetActive(false);
@@ -75,8 +77,23 @@ public class Datos2 : MonoBehaviour
             rt.anchoredPosition = localPoint;
         }
         puntosDinamicos.gameObject.SetActive(true);
+        StartCoroutine(AnimarPuntosUI(rt));
 
+    }
 
+    private IEnumerator AnimarPuntosUI(RectTransform rt)
+    {
+        float duracion = 1f;
+        float t = 0f;
+        Vector2 start = rt.anchoredPosition;
+        while(t < duracion)
+        {
+            t += Time.deltaTime;
+            rt.anchoredPosition = start + new Vector2(0, t * 40f);
+            yield return null;
+        }
+
+        puntosDinamicos.gameObject.SetActive(false);
     }
 
     // Update is called once per frame

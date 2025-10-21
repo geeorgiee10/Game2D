@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyMove : MonoBehaviour
+public class Plataforma : MonoBehaviour
 {
     [Header("Posiciones")]
          private Transform puntoA;
@@ -9,11 +9,9 @@ public class EnemyMove : MonoBehaviour
     [Header("Velocidad")]
         [SerializeField] private float velocidad = 2f;
 
-    [Header("Puntos")] public int puntos;
 
     private bool yendoHaciaB = true;
 
-    private SpriteRenderer sprite;
 
     private void Start()
     {
@@ -26,8 +24,7 @@ public class EnemyMove : MonoBehaviour
         }
         
 
-        if (!sprite)
-            sprite = GetComponent<SpriteRenderer>();
+        
     }
 
 
@@ -42,14 +39,7 @@ public class EnemyMove : MonoBehaviour
         if ((Vector2)transform.position == destino)
             yendoHaciaB = !yendoHaciaB;
 
-        if (yendoHaciaB)
-        {
-            sprite.flipX = false;
-        }
-        else
-        {
-            sprite.flipX = true;
-        }
+        
         
     }
 }

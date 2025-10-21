@@ -24,7 +24,7 @@ public class PowerUp : MonoBehaviour
             puntosPowerUp = 0;
             if(audioSource != null){
                 audioSource.Play();
-                Destroy(gameObject, audioSource.clip.length);
+                Destroy(gameObject, audioSource.clip.length/2);
             }
             else{
                 Destroy(gameObject);

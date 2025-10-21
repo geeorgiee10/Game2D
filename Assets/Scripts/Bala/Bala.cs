@@ -49,6 +49,8 @@ public class Bala : MonoBehaviour
                     sonidoExplosion.Play();
                 }
             }
+            Datos2.Instance.AddPoints(collision.gameObject.GetComponent<EnemyMove>().puntos);
+            Datos2.Instance.MostrarPuntosDinamicos(collision.gameObject.GetComponent<EnemyMove>().puntos, collision.transform.position);
 
              
             Destroy(collision.gameObject);
